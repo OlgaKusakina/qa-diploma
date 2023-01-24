@@ -60,5 +60,5 @@ public class TestCard {
         assertEquals(approvedCard.getStatus(), payData().getStatus());
     }
 
-}
 
+}
