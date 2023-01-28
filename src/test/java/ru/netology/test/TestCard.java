@@ -59,6 +59,15 @@ public class TestCard {
         buyByCard.getSuccessMessage();
         assertEquals(approvedCard.getStatus(), payData().getStatus());
     }
+    @Test
+    void shouldNotBuyByDeclineCard() {
+        var homePage = new HomePage();
+        var buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getDeclinedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.getErrorMessage();
+        assertEquals(declinedCard.getStatus(), payData().getStatus());
+        checkEmptyOrderEntity();
+    }
 
 
 }
