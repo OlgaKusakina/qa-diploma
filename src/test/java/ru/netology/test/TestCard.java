@@ -68,6 +68,14 @@ public class TestCard {
         assertEquals(declinedCard.getStatus(), payData().getStatus());
         checkEmptyOrderEntity();
     }
-
+    @Test
+    void shouldNotSendFormWithInvalidCardNumber() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getInvalidCardNumber(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.formatError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
 
 }
