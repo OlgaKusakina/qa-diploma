@@ -187,7 +187,7 @@ public class TestCard {
     @Test
     void shouldNotSendFormWithoutMonth() {
         HomePage homePage = new HomePage();
-        var buyByCard = homePage.getPageByCard();
+        BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getEmptyMonth(), getValidYear(), getValidOwner(), getValidCvc());
         buyByCard.formatError();
         checkEmptyPaymentEntity();

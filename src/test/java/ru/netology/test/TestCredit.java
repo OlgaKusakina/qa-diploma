@@ -107,7 +107,7 @@ public class TestCredit {
     @Test
     void shouldNotSendFormWithNullMonth() {
         HomePage homePage = new HomePage();
-        var buyByCredit = homePage.getPageCredit();
+        BuyByCredit buyByCredit = homePage.getPageCredit();
         buyByCredit.enterCardData(getApprovedCardInfo(), getNullMonth(), getValidYear(), getValidOwner(), getValidCvc());
         buyByCredit.formatError();
         checkEmptyPaymentEntity();
