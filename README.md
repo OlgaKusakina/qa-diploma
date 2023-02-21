@@ -19,7 +19,7 @@
 
 * Для запуска приложения необходимо установать и запустить Docker Desktop. 
 
-* склонировать репозиторий `https://github.com/OlgaKusakina/qa-diploma.git'
+* склонировать репозиторий `https://github.com/OlgaKusakina/qa-diploma.git`
 
 * Открыть проект в IntelliJ IDEA
 
