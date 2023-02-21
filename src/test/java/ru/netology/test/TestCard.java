@@ -68,15 +68,22 @@ public class TestCard {
         assertEquals(declinedCard.getStatus(), payData().getStatus());
         checkEmptyOrderEntity();
     }
-
-
+    @Test
+    void shouldNotSendFormWithInvalidCardNumber() {
+        HomePage homePage = new HomePage();
+        BuyByCard BuyByCard = homePage.getPageByCard();
+        BuyByCard.enterCardData(getInvalidCardNumber(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        BuyByCard.formatError();
+        checkEmptyCreditEntity();
+        checkEmptyOrderEntity();
+    }
 
     @Test
     void shouldNotSendFormWithInvalidMonth1() {
         HomePage homePage = new HomePage();
-        var buyByCard = homePage.getPageByCard();
-        buyByCard.enterCardData(getApprovedCardInfo(), getInvalidMonth1(), getValidYear(), getValidOwner(), getValidCvc());
-        buyByCard.formatError();
+        BuyByCard BuyByCard = homePage.getPageByCard();
+        BuyByCard.enterCardData(getApprovedCardInfo(), getInvalidMonth1(), getValidYear(), getValidOwner(), getValidCvc());
+        BuyByCard.formatError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }
@@ -230,6 +237,7 @@ public class TestCard {
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }
+
 
 }
 
