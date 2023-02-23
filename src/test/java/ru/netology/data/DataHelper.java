@@ -1,6 +1,8 @@
 package ru.netology.data;
 
 import com.github.javafaker.Faker;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Value;
 
 import java.time.LocalDate;
@@ -14,19 +16,11 @@ public class DataHelper {
     }
 
 
-    @Value
+    @Data
+    @AllArgsConstructor
     public static class CardNumber {
         String cardNumber;
         String status;
-
-        public String getStatus() {
-            return status;
-        }
-
-        public CardNumber(String cardNumber, String status) {
-            this.cardNumber = cardNumber;
-            this.status = status;
-        }
     }
 
     public static CardNumber approvedCardInfo() {
@@ -39,15 +33,6 @@ public class DataHelper {
         return cardNumber;
     }
 
-
-    @Value
-    public static class CardInfo {
-        private String cardNumber;
-        private String month;
-        private String year;
-        private String owner;
-        private String cvc;
-    }
 
     public static String getApprovedCardInfo() {
         return "4444 4444 4444 4441";
@@ -62,8 +47,8 @@ public class DataHelper {
         return Long.toString(faker.number().randomNumber(7, true));
     }
 
-    public static String getEmptyCardNumber() {
-        return " ";
+    public static String getEmptyString() {
+        return "";
     }
 
     public static String getValidMonth() {
@@ -72,24 +57,20 @@ public class DataHelper {
         return month[rnd];
     }
 
-    public static String getInvalidMonth1() {
+    public static String getInvalidMonthOneNumber() {
         String[] month = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
         int rnd = new Random().nextInt(month.length);
         return month[rnd];
     }
 
-    public static String getInvalidMonth2() {
+    public static String getInvalidMonthTwoNumbers() {
         String[] month = {"21", "22", "23", "24", "25", "26", "27", "28", "29"};
         int rnd = new Random().nextInt(month.length);
         return month[rnd];
     }
 
-    public static String getNullMonth() {
+    public static String getZeroMonth() {
         return "00";
-    }
-
-    public static String getEmptyMonth() {
-        return " ";
     }
 
     public static String getValidYear() {
@@ -106,12 +87,8 @@ public class DataHelper {
         return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
     }
 
-    public static String getNullYear() {
+    public static String getZeroYear() {
         return "00";
-    }
-
-    public static String getEmptyYear() {
-        return " ";
     }
 
     public static String getValidOwner() {
@@ -130,10 +107,6 @@ public class DataHelper {
         return owner[rnd];
     }
 
-    public static String getEmptyOwner() {
-        return " ";
-    }
-
     public static String getValidCvc() {
         Faker faker = new Faker();
         return faker.numerify("###");
@@ -144,13 +117,8 @@ public class DataHelper {
         return faker.numerify("##");
     }
 
-    public static String getNullCvc() {
+    public static String getZeroCvc() {
         return "000";
     }
-
-    public static String getEmptyCvc() {
-        return " ";
-    }
-
 
 }

@@ -46,9 +46,9 @@ docker-compose up
 * запустить автотесты командой:
 
     - для конфигурации БД MySql:
-      `./gradlew clean test "-Ddatasource.url=jdbc:mysql://localhost:3306/app"`
+      `./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"`
     - для конфигурации БД PostgreSQL:
-      `./gradlew clean test "-Ddatasource.url=jdbc:postgresql://localhost:5432/app"`
+      `./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"`
 
 ## Перезапуск приложения и тестов
 Если необходимо перезапустить приложение и/или тесты (например, для другой БД), необходимо выполнить остановку работы в запущенных ранее вкладках терминала, нажав в них Ctrl+С

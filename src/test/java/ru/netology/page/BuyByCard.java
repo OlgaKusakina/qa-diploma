@@ -35,7 +35,7 @@ public class BuyByCard {
         heading.shouldBe(Condition.visible);
     }
 
-    public BuyByCredit buyByCreditCard() {
+    public BuyByCredit switchOnCreditCardForm() {
         buttonBuyByCreditCard.click();
         $$(".heading").findBy(Condition.text("Кредит по данным карты")).shouldBe(Condition.visible);
         return new BuyByCredit();
@@ -50,30 +50,30 @@ public class BuyByCard {
         buttonContinue.click();
     }
 
-    public void getSuccessMessage() {
+    public void checkSuccessMessage() {
         successMessage.get(0).shouldBe(Condition.visible, Duration.ofSeconds(15));
         successMessage.get(0).shouldHave(Condition.exactText("Успешно"));
     }
 
-    public void getErrorMessage() {
+    public void checkErrorMessage() {
         successMessage.get(1).shouldBe(Condition.visible, Duration.ofSeconds(15));
         successMessage.get(1).shouldHave(Condition.exactText("Ошибка! Банк отказал в проведении операции."));
     }
 
 
-    public void formatError() {
+    public void checkFormatError() {
         errorMessage.shouldHave(text("Неверный формат"));
     }
 
-    public void expiredError() {
+    public void checkExpiredError() {
         errorMessage.shouldHave(text("Истёк срок действия карты"));
     }
 
-    public void invalidError() {
+    public void checkInvalidError() {
         errorMessage.shouldHave(text("Неверно указан срок действия карты"));
     }
 
-    public void emptyError() {
+    public void checkEmptyError() {
         errorMessage.shouldHave(text("Поле обязательно для заполнения"));
     }
 

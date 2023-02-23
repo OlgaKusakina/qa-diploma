@@ -19,7 +19,14 @@ public class DbHelper {
     private static String user = System.getProperty("db.user");
     private static String password = System.getProperty("db.password");
 
+    private static Connection connection;
+
     public DbHelper() {
+    }
+
+    @SneakyThrows
+    private static void getConnection() {
+        connection = DriverManager.getConnection(url, user, password);
     }
 
     @SneakyThrows
@@ -28,14 +35,10 @@ public class DbHelper {
         String cleanCreditRequest = "DELETE FROM credit_request_entity;";
         String cleanPayment = "DELETE FROM payment_entity;";
         String cleanOrder = "DELETE FROM order_entity;";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            runner.update(conn, cleanCreditRequest);
-            runner.update(conn, cleanPayment);
-            runner.update(conn, cleanOrder);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        getConnection();
+        runner.update(connection, cleanCreditRequest);
+        runner.update(connection, cleanPayment);
+        runner.update(connection, cleanOrder);
     }
 
     @SneakyThrows
@@ -43,14 +46,9 @@ public class DbHelper {
         QueryRunner runner = new QueryRunner();
         String reqStatus = "SELECT * FROM payment_entity ORDER BY created DESC LIMIT 1;";
 
-
         PaymentEntity payData = new PaymentEntity();
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            payData = runner.query(conn, reqStatus, new BeanHandler<>(PaymentEntity.class));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        getConnection();
+        payData = runner.query(connection, reqStatus, new BeanHandler<>(PaymentEntity.class));
         return payData;
     }
 
@@ -61,11 +59,8 @@ public class DbHelper {
         String selectStatus = "SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1;";
 
         CreditRequestEntity creditData = new CreditRequestEntity();
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            creditData = runner.query(conn, selectStatus, new BeanHandler<>(CreditRequestEntity.class));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        getConnection();
+        creditData = runner.query(connection, selectStatus, new BeanHandler<>(CreditRequestEntity.class));
         return creditData;
     }
 
@@ -75,11 +70,8 @@ public class DbHelper {
         var selectStatus = "SELECT * FROM order_entity ORDER BY created DESC LIMIT 1;";
 
         OrderEntity orderData = new OrderEntity();
-        try (var conn = DriverManager.getConnection(url, user, password)) {
-            orderData = runner.query(conn, selectStatus, new BeanHandler<>(OrderEntity.class));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        getConnection();
+        orderData = runner.query(connection, selectStatus, new BeanHandler<>(OrderEntity.class));
         return orderData;
     }
 
@@ -88,10 +80,9 @@ public class DbHelper {
         var runner = new QueryRunner();
         String orderRequest = "SELECT * FROM order_entity;";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            var orderBlock = runner.query(conn, orderRequest, new BeanHandler<>(OrderEntity.class));
-            assertNull(orderBlock);
-        }
+        getConnection();
+        var orderBlock = runner.query(connection, orderRequest, new BeanHandler<>(OrderEntity.class));
+        assertNull(orderBlock);
     }
 
 
@@ -100,10 +91,9 @@ public class DbHelper {
         var runner = new QueryRunner();
         var orderRequest = "SELECT * FROM payment_entity";
 
-        try (var conn = DriverManager.getConnection(url, user, password)) {
-            var paymentBlock = runner.query(conn, orderRequest, new BeanHandler<>(PaymentEntity.class));
-            assertNull(paymentBlock);
-        }
+        getConnection();
+        var paymentBlock = runner.query(connection, orderRequest, new BeanHandler<>(PaymentEntity.class));
+        assertNull(paymentBlock);
     }
 
     @SneakyThrows
@@ -112,11 +102,8 @@ public class DbHelper {
         var orderRequest = "SELECT * FROM credit_request_entity;";
 
         CreditRequestEntity creditBlock = new CreditRequestEntity();
-        try (var conn = DriverManager.getConnection(url, user, password)) {
-            creditBlock = runner.query(conn, orderRequest, new BeanHandler<>(CreditRequestEntity.class));
-        } catch (SQLException e) {
-            e.printStackTrace();
-            assertNull(creditBlock);
-        }
+        getConnection();
+        creditBlock = runner.query(connection, orderRequest, new BeanHandler<>(CreditRequestEntity.class));
+        assertNull(creditBlock);
     }
 }
