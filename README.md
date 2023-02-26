@@ -14,7 +14,7 @@
 
 1. [План дипломного проекта](https://github.com/OlgaKusakina/qa-diploma/blob/main/Plan.md)
 2. [Отчет по итогам автоматизированного тестирования](https://github.com/OlgaKusakina/qa-diploma/blob/main/Report.md)
-3. [Отчетные документы по итогам автомматизации](https://github.com/OlgaKusakina/qa-diploma/blob/main/Summary.md)
+3. [Отчет по итогам автомматизации](https://github.com/OlgaKusakina/qa-diploma/blob/main/Summary.md)
 
 ## Запуск приложения
 
