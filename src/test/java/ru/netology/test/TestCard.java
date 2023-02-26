@@ -69,6 +69,15 @@ public class TestCard {
         checkEmptyOrderEntity();
     }
 
+    @Test
+    void shouldNotSendFormWithInvalidCardNumber() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getInvalidCardNumber(), getValidMonth(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.checkFormatError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
 
 
     @Test
@@ -102,6 +111,16 @@ public class TestCard {
     }
 
     @Test
+    void shouldNotSendFormWithNullYear() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getZeroYear(), getValidOwner(), getValidCvc());
+        buyByCard.checkExpiredError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
     void shouldNotSendFormWithInvalidYearCard1() {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
@@ -121,16 +140,6 @@ public class TestCard {
         checkEmptyOrderEntity();
     }
 
-
-    @Test
-    void shouldNotSendFormWithNullYear() {
-        HomePage homePage = new HomePage();
-        BuyByCard buyByCard = homePage.getPageByCard();
-        buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getZeroYear(), getValidOwner(), getValidCvc());
-        buyByCard.checkExpiredError();
-        checkEmptyPaymentEntity();
-        checkEmptyOrderEntity();
-    }
 
     @Test
     void shouldNotSendFormWithOwnerTypedCyrillic() {
@@ -166,29 +175,12 @@ public class TestCard {
         checkEmptyOrderEntity();
     }
 
-    @Test
-    void shouldNotSendFormWitheEmptyCvc() {
-        HomePage homePage = new HomePage();
-        BuyByCard buyByCard = homePage.getPageByCard();
-        buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getEmptyString());
-        buyByCard.checkFormatError();
-        checkEmptyPaymentEntity();
-        checkEmptyOrderEntity();
-    }
+
     @Test
     void shouldNotSendFormWithNullCvc() {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getZeroCvc());
-        buyByCard.checkFormatError();
-        checkEmptyPaymentEntity();
-        checkEmptyOrderEntity();
-    }
-    @Test
-    void shouldNotSendFormWithoutMonth() {
-        HomePage homePage = new HomePage();
-        BuyByCard buyByCard = homePage.getPageByCard();
-        buyByCard.enterCardData(getApprovedCardInfo(), getEmptyString(), getValidYear(), getValidOwner(), getValidCvc());
         buyByCard.checkFormatError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
@@ -204,6 +196,16 @@ public class TestCard {
         checkEmptyOrderEntity();
     }
     @Test
+    void shouldNotSendFormWithoutMonth() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getEmptyString(), getValidYear(), getValidOwner(), getValidCvc());
+        buyByCard.checkFormatError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
     void shouldNotSendFormWithoutYear() {
         HomePage homePage = new HomePage();
         BuyByCard buyByCard = homePage.getPageByCard();
@@ -218,6 +220,16 @@ public class TestCard {
         BuyByCard buyByCard = homePage.getPageByCard();
         buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getEmptyString(), getValidCvc());
         buyByCard.checkEmptyError();
+        checkEmptyPaymentEntity();
+        checkEmptyOrderEntity();
+    }
+
+    @Test
+    void shouldNotSendFormWitheEmptyCvc() {
+        HomePage homePage = new HomePage();
+        BuyByCard buyByCard = homePage.getPageByCard();
+        buyByCard.enterCardData(getApprovedCardInfo(), getValidMonth(), getValidYear(), getValidOwner(), getEmptyString());
+        buyByCard.checkFormatError();
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }

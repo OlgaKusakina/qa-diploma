@@ -112,7 +112,15 @@ public class TestCredit {
         checkEmptyPaymentEntity();
         checkEmptyOrderEntity();
     }
-
+    @Test
+    void shouldNotSendFormWithNullYear() {
+        HomePage homePage = new HomePage();
+        BuyByCredit buyByCredit = homePage.getPageCredit();
+        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getZeroYear(), getValidOwner(), getValidCvc());
+        buyByCredit.checkExpiredError();
+        checkEmptyCreditEntity();
+        checkEmptyOrderEntity();
+    }
     @Test
     void shouldNotSendFormWithInvalidYearCard1() {
         HomePage homePage = new HomePage();
@@ -134,15 +142,7 @@ public class TestCredit {
     }
 
 
-    @Test
-    void shouldNotSendFormWithNullYear() {
-        HomePage homePage = new HomePage();
-        BuyByCredit buyByCredit = homePage.getPageCredit();
-        buyByCredit.enterCardData(getApprovedCardInfo(), getValidMonth(), getZeroYear(), getValidOwner(), getValidCvc());
-        buyByCredit.checkExpiredError();
-        checkEmptyCreditEntity();
-        checkEmptyOrderEntity();
-    }
+
 
     @Test
     void shouldNotSendFormWithOwnerTypedCyrillic() {
