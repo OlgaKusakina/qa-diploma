@@ -13,7 +13,7 @@
 ## Документация по проекту
 
 1. [План дипломного проекта](https://github.com/OlgaKusakina/qa-diploma/blob/main/Plan.md)
-2. [Отчет по итогам тестирования] (https://github.com/OlgaKusakina/qa-diploma/blob/main/Report.md)
+2. [Отчет по итогам автоматизированного тестирования](https://github.com/OlgaKusakina/qa-diploma/blob/main/Report.md)
 
 ## Запуск приложения
 
