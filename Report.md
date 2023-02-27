@@ -20,11 +20,11 @@ ___
 
 При подключении к БД MySQL:
 
-![img_1.png](img_1.png)
+[Отчет Allure при подключении к БД MySQL](ttps://github.com/OlgaKusakina/qa-diploma/issues/17)
 
 При подключении к БД PostgreSQL:
 
-![img_2.png](img_2.png)
+[Отчет Allure при подключении к БД PostgreSQL](https://github.com/OlgaKusakina/qa-diploma/issues/18)
 
 На все выявленные ошибки были заведены репорты в [Issues](https://github.com/OlgaKusakina/qa-diploma/issues)
 
