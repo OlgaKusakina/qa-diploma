@@ -20,7 +20,7 @@ ___
 
 При подключении к БД MySQL:
 
-[Отчет Allure при подключении к БД MySQL](ttps://github.com/OlgaKusakina/qa-diploma/issues/17)
+[Отчет Allure при подключении к БД MySQL](https://github.com/OlgaKusakina/qa-diploma/issues/17)
 
 При подключении к БД PostgreSQL:
 
